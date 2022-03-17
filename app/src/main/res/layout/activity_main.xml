@@ -4,15 +4,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".MainActivity">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginBottom="40dp"
+        android:text="Quote of the Day"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/materialCardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.443">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/vector_quote"/>
+
+            <TextView
+                android:id="@+id/tvQuote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                tools:text="Genius is one percent inspiration and ninety-nine percent perspiration." />
+
+            <TextView
+                android:id="@+id/tvAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="~ Author"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbtnShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/vector_share"
+        app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+        app:layout_constraintStart_toStartOf="@+id/materialCardView"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Previous"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:icon="@drawable/vector_left_arrow"
+        app:iconPadding="0dp"
+        app:iconTint="@color/black"
+        android:background="#00000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Next"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:icon="@drawable/vector_right_arrow"
+        app:iconPadding="0dp"
+        app:iconGravity="end"
+        app:iconTint="@color/black"
+        android:background="#00000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
