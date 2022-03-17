@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,7 +21,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
-        android:layout_width="350dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +33,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="10dp"
             android:orientation="vertical">
 
@@ -46,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="24dp"
+                android:textSize="20dp"
                 tools:text="Genius is one percent inspiration and ninety-nine percent perspiration." />
 
             <TextView
@@ -55,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:text="~ Author"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:gravity="end"/>
 
@@ -77,10 +78,10 @@
         android:id="@+id/btnPrevious"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="16dp"
         android:text="Previous"
         android:textColor="@color/black"
-        android:textSize="18dp"
+        android:textSize="14dp"
         app:icon="@drawable/vector_left_arrow"
         app:iconPadding="0dp"
         app:iconTint="@color/black"
@@ -92,10 +93,10 @@
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="14dp"
         android:text="Next"
         android:textColor="@color/black"
-        android:textSize="18dp"
+        android:textSize="16dp"
         app:icon="@drawable/vector_right_arrow"
         app:iconPadding="0dp"
         app:iconGravity="end"
