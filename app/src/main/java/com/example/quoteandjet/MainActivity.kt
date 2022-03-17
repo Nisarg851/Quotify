@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.quoteandjet.Models.Quote
 import com.example.quoteandjet.ViewModelFactories.MainViewModelFactory
@@ -51,14 +52,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //        tvQuote.text = viewModel.getQuote().text
 //        tvAuthor.text = viewModel.getQuote().author
 
+        bindObservables()
+
         binding.fbtnShare.setOnClickListener(this)
         binding.btnNext.setOnClickListener(this)
         binding.btnPrevious.setOnClickListener(this)
     }
 
+    private fun bindObservables() {
+        viewModel.quoteIndex.observe(this, Observer {
+            binding.tvQuote.text = viewModel.getQuote().text
+            binding.tvAuthor.text = viewModel.getQuote().author
+        })
+    }
+
     override fun onClick(view: View?) {
         when(view?.id){
-
             R.id.fbtnShare -> {
                 val quote: Quote = viewModel.getQuote()
                 val shareIntent: Intent = Intent(Intent.ACTION_SEND)
@@ -66,19 +75,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 shareIntent.putExtra(Intent.EXTRA_TEXT,quote.text)
                 startActivity(shareIntent)
             }
-
-            R.id.btnNext -> {
-                val quote: Quote = viewModel.getNextQuote()
-                binding.tvQuote.text = quote.text
-                binding.tvAuthor.text = quote.author
-            }
-
-            R.id.btnPrevious -> {
-                val quote: Quote = viewModel.getPreviousQuote()
-                binding.tvQuote.text = quote.text
-                binding.tvAuthor.text = quote.author
-            }
-
+            R.id.btnNext -> viewModel.getNextQuote()
+            R.id.btnPrevious -> viewModel.getPreviousQuote()
         }
     }
 

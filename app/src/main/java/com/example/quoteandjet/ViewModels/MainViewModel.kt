@@ -2,17 +2,23 @@ package com.example.quoteandjet.ViewModels
 
 import android.content.Context
 import android.os.Build
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.quoteandjet.Models.Quote
 import com.google.gson.Gson
 import java.io.InputStream
 import java.nio.charset.StandardCharsets.UTF_8
 
-@Suppress("UNCHECKED_CAST")
 class MainViewModel(val context: Context): ViewModel() {
 
+//    private var quoteList: Array<Quote> = emptyArray()
+//    private var quoteIndex = 1
+
     private var quoteList: Array<Quote> = emptyArray()
-    private var quoteIndex = 1
+
+    private var _quoteIndex: MutableLiveData<Int> = MutableLiveData(0)
+    val quoteIndex: LiveData<Int> = _quoteIndex
 
     init {
         quoteList = loadQuotesFromAssets()
@@ -28,12 +34,16 @@ class MainViewModel(val context: Context): ViewModel() {
             val gson = Gson()
             return gson.fromJson(json, Array<Quote>::class.java)
         }
-        return emptyArray<Quote>()
+        return emptyArray()
     }
 
-    fun getQuote() = quoteList.get(quoteIndex)
+    fun getQuote() = quoteList.get(quoteIndex.value as Int)
 
-    fun getNextQuote() = quoteList.get(++quoteIndex)
+    fun getNextQuote(){
+        _quoteIndex.value = _quoteIndex.value?.plus(1)
+    }
 
-    fun getPreviousQuote() = quoteList.get(--quoteIndex)
+    fun getPreviousQuote(){
+        _quoteIndex.value = _quoteIndex.value?.minus(1)
+    }
 }
