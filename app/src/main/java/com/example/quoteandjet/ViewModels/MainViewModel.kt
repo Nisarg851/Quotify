@@ -12,9 +12,6 @@ import java.nio.charset.StandardCharsets.UTF_8
 
 class MainViewModel(val context: Context): ViewModel() {
 
-//    private var quoteList: Array<Quote> = emptyArray()
-//    private var quoteIndex = 1
-
     private var quoteList: Array<Quote> = emptyArray()
 
     private var _quoteIndex: MutableLiveData<Int> = MutableLiveData(0)
@@ -40,10 +37,12 @@ class MainViewModel(val context: Context): ViewModel() {
     fun getQuote() = quoteList.get(quoteIndex.value as Int)
 
     fun getNextQuote(){
-        _quoteIndex.value = _quoteIndex.value?.plus(1)
+        if(_quoteIndex.value!! < quoteList.size-1)
+            _quoteIndex.value = _quoteIndex.value!! + 1
     }
 
     fun getPreviousQuote(){
-        _quoteIndex.value = _quoteIndex.value?.minus(1)
+        if(_quoteIndex.value!! > 0)
+            _quoteIndex.value = _quoteIndex.value!! - 1
     }
 }

@@ -20,19 +20,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
 
-    // View Components
-//        private lateinit var tvQuote: TextView
-//        private lateinit var tvAuthor: TextView
-//
-//        private lateinit var btnShare: FloatingActionButton
-//        private lateinit var btnNext: Button
-//        private lateinit var btnPrevious: Button
-
-//    private var TAG = "Lifecycler"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
 //        lifecycle.addObserver(LifeCycleObserverClass())
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProvider(this, MainViewModelFactory(application)).get(MainViewModel::class.java)
@@ -43,14 +32,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun setControls() {
         binding.tvQuote.text = viewModel.getQuote().text
         binding.tvAuthor.text = viewModel.getQuote().author
-//        tvQuote = findViewById(R.id.tvQuote)
-//        tvAuthor = findViewById(R.id.tvAuthor)
-//        btnShare = findViewById(R.id.fbtnShare)
-//        btnPrevious = findViewById(R.id.btnPrevious)
-//        btnNext = findViewById(R.id.btnNext)
-//
-//        tvQuote.text = viewModel.getQuote().text
-//        tvAuthor.text = viewModel.getQuote().author
 
         bindObservables()
 
