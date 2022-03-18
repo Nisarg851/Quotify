@@ -1,7 +1,8 @@
-package com.example.quoteandjet.ViewModels
+package com.example.quoteandjet.viewModels
 
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,12 +14,16 @@ import java.nio.charset.StandardCharsets.UTF_8
 class MainViewModel(val context: Context): ViewModel() {
 
     private var quoteList: Array<Quote> = emptyArray()
+    private var quoteIndex: Int = 0
 
-    private var _quoteIndex: MutableLiveData<Int> = MutableLiveData(0)
-    val quoteIndex: LiveData<Int> = _quoteIndex
+    // Live Datas
+    private var _quote: MutableLiveData<Quote>
+    val quote: LiveData<Quote>
 
     init {
         quoteList = loadQuotesFromAssets()
+        _quote = MutableLiveData(quoteList.get(0))
+        quote = _quote
     }
 
     private fun loadQuotesFromAssets(): Array<Quote>{
@@ -34,15 +39,15 @@ class MainViewModel(val context: Context): ViewModel() {
         return emptyArray()
     }
 
-    fun getQuote() = quoteList.get(quoteIndex.value as Int)
-
     fun getNextQuote(){
-        if(_quoteIndex.value!! < quoteList.size-1)
-            _quoteIndex.value = _quoteIndex.value!! + 1
+        if(quoteIndex < quoteList.size-1)
+            ++quoteIndex
+        _quote.value = quoteList.get(quoteIndex)
     }
 
     fun getPreviousQuote(){
-        if(_quoteIndex.value!! > 0)
-            _quoteIndex.value = _quoteIndex.value!! - 1
+        if(quoteIndex > 0)
+            quoteIndex = quoteIndex - 1
+        _quote.value = quoteList.get(quoteIndex)
     }
 }

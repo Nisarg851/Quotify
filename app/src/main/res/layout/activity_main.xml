@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.quoteandjet.viewModels.MainViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,13 +56,13 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="20dp"
-                    tools:text="Genius is one percent inspiration and ninety-nine percent perspiration." />
+                    android:text="@{viewModel.quote.text}" />
 
                 <TextView
                     android:id="@+id/tvAuthor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="~ Author"
+                    android:text="@{viewModel.quote.author}"
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     android:textStyle="bold"
@@ -70,6 +76,7 @@
             android:id="@+id/fbtnShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:fabSize="mini"
             android:layout_marginLeft="20dp"
             android:src="@drawable/vector_share"
             app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
@@ -80,14 +87,15 @@
             android:id="@+id/btnPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="14dp"
             android:text="Previous"
             android:textColor="@color/black"
-            android:textSize="14dp"
+            android:textSize="16dp"
             app:icon="@drawable/vector_left_arrow"
             app:iconPadding="0dp"
             app:iconTint="@color/black"
             android:background="#00000000"
+            android:onClick="@{()->viewModel.getPreviousQuote()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -104,6 +112,7 @@
             app:iconGravity="end"
             app:iconTint="@color/black"
             android:background="#00000000"
+            android:onClick="@{()->viewModel.getNextQuote()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
