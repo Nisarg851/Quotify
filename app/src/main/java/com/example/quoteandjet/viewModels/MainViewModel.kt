@@ -2,12 +2,15 @@ package com.example.quoteandjet.viewModels
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.quoteandjet.Models.Quote
+import com.example.quoteandjet.database.DatabaseModel
+import com.example.quoteandjet.models.Quote
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.InputStream
 import java.nio.charset.StandardCharsets.UTF_8
 
@@ -22,6 +25,13 @@ class MainViewModel(val context: Context): ViewModel() {
 
     init {
         quoteList = loadQuotesFromAssets()
+
+        val database: DatabaseModel = DatabaseModel.getDBInstance(context.applicationContext)
+        CoroutineScope(Dispatchers.IO).launch {
+            val _quoteList: List<Quote> = quoteList.map { Quote(id = null, text = it.text, author = it.author) }
+            database.quoteDAO().insertAllQuotesFrom(_quoteList)
+        }
+
         _quote = MutableLiveData(quoteList.get(0))
         quote = _quote
     }

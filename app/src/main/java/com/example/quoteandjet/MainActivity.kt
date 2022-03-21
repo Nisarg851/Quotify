@@ -3,12 +3,10 @@ package com.example.quoteandjet
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.quoteandjet.Models.Quote
 import com.example.quoteandjet.ViewModelFactories.MainViewModelFactory
+import com.example.quoteandjet.models.Quote
 import com.example.quoteandjet.viewModels.MainViewModel
 import com.example.quoteandjet.databinding.ActivityMainBinding
 
